@@ -13,6 +13,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.widget.TextView;
 
@@ -121,6 +123,7 @@ public class AspectRatioTextView extends TextView {
         int activeColor = getResources().getColor(R.color.ucrop_color_widget_active);
         applyActiveColor(activeColor);
 
+        this.setMaxLines(1);
         a.recycle();
     }
 
@@ -154,6 +157,8 @@ public class AspectRatioTextView extends TextView {
 
     private void setTitle() {
         if (!TextUtils.isEmpty(mAspectRatioTitle)) {
+            this.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+            this.setPadding(0, 2, 0, 0);
             setText(mAspectRatioTitle);
         } else {
             setText(String.format(Locale.US, "%d:%d", (int) mAspectRatioX, (int) mAspectRatioY));
