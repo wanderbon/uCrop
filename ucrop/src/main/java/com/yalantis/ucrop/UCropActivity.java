@@ -95,6 +95,8 @@ public class UCropActivity extends AppCompatActivity {
     private boolean mShowBottomControls;
     private boolean mShowLoader = true;
 
+    private boolean mFreeStyleCrop = true;
+
     private UCropView mUCropView;
     private GestureCropImageView mGestureCropImageView;
     private OverlayView mOverlayView;
@@ -223,6 +225,7 @@ public class UCropActivity extends AppCompatActivity {
 
         // Overlay view options
         mOverlayView.setFreestyleCropEnabled(intent.getBooleanExtra(UCrop.Options.EXTRA_FREE_STYLE_CROP, OverlayView.DEFAULT_FREESTYLE_CROP_MODE != OverlayView.FREESTYLE_CROP_MODE_DISABLE));
+        mOverlayView.setFreestyleCropMode(OverlayView.FREESTYLE_CROP_MODE_ENABLE);
 
         mOverlayView.setDimmedColor(intent.getIntExtra(UCrop.Options.EXTRA_DIMMED_LAYER_COLOR, getResources().getColor(R.color.ucrop_color_default_dimmed)));
         mOverlayView.setCircleDimmedLayer(intent.getBooleanExtra(UCrop.Options.EXTRA_CIRCLE_DIMMED_LAYER, OverlayView.DEFAULT_CIRCLE_DIMMED_LAYER));
@@ -275,6 +278,7 @@ public class UCropActivity extends AppCompatActivity {
         mLogoColor = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_LOGO_COLOR, ContextCompat.getColor(this, R.color.ucrop_color_default_logo));
         mShowBottomControls = !intent.getBooleanExtra(UCrop.Options.EXTRA_HIDE_BOTTOM_CONTROLS, false);
         mRootViewBackgroundColor = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_ROOT_VIEW_BACKGROUND_COLOR, ContextCompat.getColor(this, R.color.ucrop_color_crop_background));
+        mFreeStyleCrop = intent.getBooleanExtra(UCrop.Options.EXTRA_FREE_STYLE_CROP, mFreeStyleCrop);
 
         setupAppBar();
         initiateRootViews();
@@ -287,6 +291,8 @@ public class UCropActivity extends AppCompatActivity {
 
             setupAspectRatioWidget(intent);
         }
+
+        mOverlayView.setFreestyleCropMode(mFreeStyleCrop ? OverlayView.FREESTYLE_CROP_MODE_ENABLE : OverlayView.FREESTYLE_CROP_MODE_DISABLE);
     }
 
     /**
