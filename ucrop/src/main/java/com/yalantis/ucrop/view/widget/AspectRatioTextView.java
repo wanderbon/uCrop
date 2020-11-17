@@ -8,15 +8,15 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.widget.TextView;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.yalantis.ucrop.R;
 import com.yalantis.ucrop.model.AspectRatio;
@@ -27,7 +27,7 @@ import java.util.Locale;
 /**
  * Created by Oleksii Shliama (https://github.com/shliama).
  */
-public class AspectRatioTextView extends TextView {
+public class AspectRatioTextView extends androidx.appcompat.widget.AppCompatTextView {
 
     private final Rect mCanvasClipBounds = new Rect();
     private Paint mDotPaint;
@@ -53,7 +53,7 @@ public class AspectRatioTextView extends TextView {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public AspectRatioTextView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
+        super(context, attrs, defStyleAttr);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ucrop_AspectRatioTextView);
         init(a);
     }
